@@ -101,7 +101,6 @@
 	}
 
     StopWatch.prototype.drawTime = function () {
-	// console.log('drawTime');
     this.timeIndicatorNode.innerText=this.formatTime(this.elapsedTime);
 	} 
 
@@ -136,25 +135,20 @@
 			
         if (this.show==true) {
 			this.start();
-			//console.log('START');
 			this.show=false;
 		} else {
 			this.stop();
 			this.show=true;
-			//console.log("STOP");
 		}
 	}
 
 	StopWatch.prototype.stop = function () {
 		clearInterval(this.intervalId);
 		this.intervalId=null;
-		//console.log ("stop");
 	} 
 
 
 	StopWatch.prototype.start = function () {
-		//console.log("start");
-		
 		var _this=this;
 		var lastUpdateTime= (new Date()).getTime();
 
@@ -163,13 +157,10 @@
 			var nextTicTime= (new Date()).getTime()				
 			_this.elapsedTime+=(nextTicTime - lastUpdateTime);
 			lastUpdateTime=nextTicTime;
-		//console.log(typeof _this.drawTime);
 			_this.drawTime();
 		}, 16);
 	}
 	StopWatch.prototype.reset = function () {
-		//console.log("reset");
-	//	console.log(typeof this.stop);
 		this.elapsedTime=0;
 		this.drawTime();
 		this.stop();
@@ -178,7 +169,6 @@
 	}
 	StopWatch.prototype.drawLaps = function () {
 		var _this=this;
-	//	console.log("drawLaps");
 		_this.lapsListNode.innerHTML='';
 		_this.laps.forEach(function (lap, lapsIndex) {
 									// Creat DOM for lap
@@ -205,14 +195,11 @@
 
 
 	StopWatch.prototype.lap = function () {
-		//console.log('lap');
 		this.laps.unshift(this.elapsedTime);
-
 	    this.drawLaps();
 	}
 	StopWatch.prototype.removeLap = function (index) {
 		this.laps.splice(index, 1);
-
 		this.drawLaps();
 	}
 
